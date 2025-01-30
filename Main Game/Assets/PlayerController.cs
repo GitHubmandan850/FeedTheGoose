@@ -46,14 +46,6 @@ public class PlayerController : MonoBehaviour
             playerAnim.ResetTrigger("Walk Back");
             playerAnim.SetTrigger("Idle");
         }
-        if(Input.GetKey(KeyCode.A))
-        {
-            playerTrans.Rotate(0, -ro_speed * Time.deltaTime, 0);
-        }
-        if(Input.GetKey(KeyCode.D))
-        {
-            playerTrans.Rotate(0, ro_speed * Time.deltaTime, 0);
-        }
         if(walking == true)
         {
             if(Input.GetKeyDown(KeyCode.LeftShift))
