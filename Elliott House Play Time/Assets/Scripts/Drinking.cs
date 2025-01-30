@@ -3,28 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Eating : MonoBehaviour
+public class Drinking : MonoBehaviour
 {
-    public Slider hungerBar;
+    public Slider thirstBar;
     public Health Health;
-    public float hunger;
+    public float thirst;
     public float decline = 1;
     public float timer;
     // Start is called before the first frame update
     void Start()
     {
-        hunger = 100;
+        thirst = 200;
     }
 
     // Update is called once per frame
     void Update()
     {
-        hungerBar.value = hunger;
-        hunger -= 5 * Time.deltaTime;
+        thirstBar.value = thirst;
+        thirst -= 5 * Time.deltaTime;
 
-        if(hunger <= 0)
+        if(thirst <= 0)
         {
-            hunger = 0;
+            thirst = 0;
             timer += Time.deltaTime;
         }
 
@@ -35,17 +35,17 @@ public class Eating : MonoBehaviour
         }
     }
 
-    public void Eat(int food)
+    public void Drink(int drink)
     {
-        hunger += food;
-        if(hunger > 100)
+        thirst += drink;
+        if(thirst > 200)
         {
-            hunger = 100;
+            thirst = 200;
         }
     }
 
-    public void Hunger(int food)
+    public void Thirst(int drink)
     {
-        decline = food;
+        decline = drink;
     }
 }
