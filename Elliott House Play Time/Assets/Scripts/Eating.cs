@@ -20,7 +20,7 @@ public class Eating : MonoBehaviour
     void Update()
     {
         hungerBar.value = hunger;
-        hunger -= 5 * Time.deltaTime;
+        hunger -= decline * Time.deltaTime;
 
         if(hunger <= 0)
         {
