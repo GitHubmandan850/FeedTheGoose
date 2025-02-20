@@ -20,7 +20,7 @@ public class Drinking : MonoBehaviour
     void Update()
     {
         thirstBar.value = thirst;
-        thirst -= 5 * Time.deltaTime;
+        thirst -= decline * Time.deltaTime;
 
         if(thirst <= 0)
         {
