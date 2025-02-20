@@ -7,6 +7,8 @@ public class CameraStateManager : MonoBehaviour
 {
     public Cinemachine.AxisState xAxis, yAxis;
     [SerializeField] Transform camFollowPos;
+    public bool InInventory;
+    public PlayerController playerControl;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +18,23 @@ public class CameraStateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        
+        if(playerControl.Inventory.gameObject.activeSelf)
+        {
+            InInventory = true;
+        }
+        else
+        {
+            InInventory = false;
+        }
+        if(InInventory == true)
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+        if(InInventory == false);
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
         xAxis.Update(Time.deltaTime);
         yAxis.Update(Time.deltaTime);
     }
