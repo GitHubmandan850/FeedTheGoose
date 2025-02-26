@@ -1979,8 +1979,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   txt: {fileID: 1114148910}
-  cold: {fileID: 236911732}
   hot: {fileID: 452687815}
+  cold: {fileID: 236911732}
   health: {fileID: 1159250799}
   temp: 0
 --- !u!1 &1198000435
