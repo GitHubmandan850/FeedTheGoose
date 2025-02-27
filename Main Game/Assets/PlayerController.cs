@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     public float jumpSpeed;
     public bool walking;
     public Transform playerTrans;
+    public CameraStateManager cameraStateMan;
+    public GameObject Inventory;
 
     void FixedUpdate()
     {
@@ -20,6 +22,14 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKey(KeyCode.S))
         {
             playerRigid.velocity = -transform.forward * wb_speed * Time.deltaTime;
+        }
+        if(Input.GetKey(KeyCode.D))
+        {
+            playerRigid.velocity = transform.right * wb_speed * Time.deltaTime;
+        }
+        if(Input.GetKey(KeyCode.A))
+        {
+            playerRigid.velocity = -transform.right * wb_speed * Time.deltaTime;
         }
     }
     void Update()
@@ -46,6 +56,38 @@ public class PlayerController : MonoBehaviour
             playerAnim.ResetTrigger("Walk Back");
             playerAnim.SetTrigger("Idle");
         }
+        if(Input.GetKeyDown(KeyCode.D))
+        {
+            playerAnim.SetTrigger("Right");
+            playerAnim.ResetTrigger("Idle");
+            
+        }
+        if(Input.GetKeyUp(KeyCode.D))
+        {
+            playerAnim.ResetTrigger("Right");
+            playerAnim.SetTrigger("Idle");
+        }
+        if(Input.GetKeyDown(KeyCode.A))
+        {
+            playerAnim.SetTrigger("Left");
+            playerAnim.ResetTrigger("Idle");
+        }
+        if(Input.GetKeyUp(KeyCode.A))
+        {
+            playerAnim.ResetTrigger("Left");
+            playerAnim.SetTrigger("Idle");
+        }
+        if (Input.GetKeyDown("space"))
+        {
+            playerRigid.AddForce(Vector3.up * jumpSpeed);
+            playerAnim.SetTrigger("Jump");
+            playerAnim.ResetTrigger("Idle");
+        }
+        if (Input.GetKeyUp("space"))
+        {
+            playerAnim.ResetTrigger("Jump");
+            playerAnim.SetTrigger("Idle");
+        }
         if(walking == true)
         {
             if(Input.GetKeyDown(KeyCode.LeftShift))
@@ -61,16 +103,11 @@ public class PlayerController : MonoBehaviour
                 playerAnim.SetTrigger("Walk");
             }
         }
-        if (Input.GetKeyDown("space"))
+        
+        if (Input.GetKeyDown("tab"))
         {
-            playerRigid.AddForce(Vector3.up * jumpSpeed);
-            playerAnim.SetTrigger("Jump");
-            playerAnim.ResetTrigger("Idle");
-        }
-        if (Input.GetKeyUp("space"))
-        {
-            playerAnim.ResetTrigger("Jump");
-            playerAnim.SetTrigger("Idle");
+            Inventory.SetActive(true);
+            cameraStateMan.InInventory = true;
         }
 
     }
