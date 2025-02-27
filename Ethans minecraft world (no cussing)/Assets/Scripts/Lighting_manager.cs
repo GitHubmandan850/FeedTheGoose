@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[ExcuteAlways]
+
+[ExecuteAlways]
 public class Lighting_manager : MonoBehaviour
 {
     //References
     [SerializeField] private Light DirectionalLight;
-    [SerializeField] private LightingPreset Preset;
+    [SerializeField] private Light_condition_preset Preset;
     //Variables
     [SerializeField, Range(0,24)] private float TimeOfDay;
 
