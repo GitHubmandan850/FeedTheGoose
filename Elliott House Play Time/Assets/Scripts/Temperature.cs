@@ -10,6 +10,7 @@ public class Temperature : MonoBehaviour
     public Image cold;
     public Health health;
     public int temp;
+    public float timer = 0;
 
     void Start()
     {
@@ -18,6 +19,7 @@ public class Temperature : MonoBehaviour
 
     void Update()
     {
+        timer += Time.deltaTime;
         txt.text = temp + " F";
         if(temp <= 32)
         {
@@ -44,10 +46,29 @@ public class Temperature : MonoBehaviour
         {
             health.Damage(Time.deltaTime * (temp - 132)); // Increased damage scaling
         }
+
+        if (temp > 70)
+        {
+            if (timer > 5)
+            {
+                timer -= .5f;
+                temp -= 1;
+            }
+        }
+
+        if (temp < 70)
+        {
+            if (timer > 5)
+            {
+                timer -= .25f;
+                temp += 1;
+            }
+        }
     }
 
-    void Heat(int heat)
+    public void Heat(int heat)
     {
         temp += heat;
+        timer = 0;
     }
 }

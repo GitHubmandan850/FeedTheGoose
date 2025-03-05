@@ -30,7 +30,7 @@ public class Health : MonoBehaviour
         }
     }
 
-    public void Heal(int heal)
+    public void Heal(float heal)
     {
         health += heal;
 

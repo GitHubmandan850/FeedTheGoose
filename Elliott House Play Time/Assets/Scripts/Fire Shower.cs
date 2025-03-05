@@ -5,6 +5,8 @@ using UnityEngine;
 public class FireShower : MonoBehaviour
 {
     public GameObject firePrefab;
+    public GameObject player;
+    public Temperature temperature;
     public double timer;
     private List<GameObject> spawnedFires = new List<GameObject>(); // Track instances
 
@@ -24,6 +26,13 @@ public class FireShower : MonoBehaviour
                 Destroy(spawnedFires[i]);
                 spawnedFires.RemoveAt(i);
             }
+
+            else if (player.GetComponent<Collider>().bounds.Intersects(spawnedFires[i].GetComponent<Collider>().bounds))
+            {
+                Destroy(spawnedFires[i]);
+                spawnedFires.RemoveAt(i);
+                temperature.Heat(3);
+            }
         }
     }
 
@@ -32,6 +41,7 @@ public class FireShower : MonoBehaviour
         for (int i = 0; i < num; i++)
         {
             GameObject newFire = Instantiate(firePrefab, GenerateSpawnPosition(), firePrefab.transform.rotation);
+            newFire.GetComponent<Rigidbody>().AddForce(Random.Range(-30, 30), Random.Range(-30, 30), Random.Range(-10, 50), ForceMode.Impulse);
             spawnedFires.Add(newFire);
         }
     }
