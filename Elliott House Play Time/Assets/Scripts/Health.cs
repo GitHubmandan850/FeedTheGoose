@@ -19,7 +19,7 @@ public class Health : MonoBehaviour
         healthBar.value = health;
     }
 
-    public void Damage(int damage)
+    public void Damage(float damage)
     {
         health -= damage;
 
@@ -30,7 +30,7 @@ public class Health : MonoBehaviour
         }
     }
 
-    public void Heal(int heal)
+    public void Heal(float heal)
     {
         health += heal;
 
