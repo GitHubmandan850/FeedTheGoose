@@ -14,19 +14,21 @@ public class Item : MonoBehaviour
     private Sprite itemSprite;
 
     private InventoryManager inventoryManager;
-    public GameObject other;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        inventoryManager = GameObject.Find("Inventory Canvas").GetComponent<InventoryManager>();
+        inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.CompareTag("Player"))
+        {
             inventoryManager.AddItem(itemName, quantity, itemSprite);
             Destroy(gameObject);
+        }
     }
     
 }
