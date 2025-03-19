@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
     public bool walking;
     public Transform playerTrans;
     public CameraStateManager cameraStateMan;
-    public GameObject Inventory;
 
     void FixedUpdate()
     {
@@ -77,17 +76,6 @@ public class PlayerController : MonoBehaviour
             playerAnim.ResetTrigger("Left");
             playerAnim.SetTrigger("Idle");
         }
-        if (Input.GetKeyDown("space"))
-        {
-            playerRigid.AddForce(Vector3.up * jumpSpeed);
-            playerAnim.SetTrigger("Jump");
-            playerAnim.ResetTrigger("Idle");
-        }
-        if (Input.GetKeyUp("space"))
-        {
-            playerAnim.ResetTrigger("Jump");
-            playerAnim.SetTrigger("Idle");
-        }
         if(walking == true)
         {
             if(Input.GetKeyDown(KeyCode.LeftShift))
@@ -102,12 +90,6 @@ public class PlayerController : MonoBehaviour
                 playerAnim.ResetTrigger("Run");
                 playerAnim.SetTrigger("Walk");
             }
-        }
-        
-        if (Input.GetKeyDown("tab"))
-        {
-            Inventory.SetActive(true);
-            cameraStateMan.InInventory = true;
         }
 
     }
