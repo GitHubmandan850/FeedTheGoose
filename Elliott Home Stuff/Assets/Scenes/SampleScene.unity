@@ -6446,6 +6446,7 @@ MonoBehaviour:
   firePrefab: {fileID: 8018755842079399507, guid: 524c937bcc517a543a32ac514352a4c8, type: 3}
   player: {fileID: 1157799757}
   cloudPrefab: {fileID: 283322517463230711, guid: 93b9d06cc69b77147b432f6cff1394b1, type: 3}
+  warningPrefab: {fileID: 7108767098990038760, guid: d8e76418522ff864ab350f8e6eb92445, type: 3}
   temperature: {fileID: 1461243407}
   timer: 0
   movemementX: 0

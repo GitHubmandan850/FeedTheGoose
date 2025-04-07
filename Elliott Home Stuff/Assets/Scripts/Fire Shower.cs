@@ -7,6 +7,7 @@ public class FireShower : MonoBehaviour
     public GameObject firePrefab;
     public GameObject player;
     public GameObject cloudPrefab;
+    public GameObject warningPrefab;
     public Temperature temperature;
     public float timer;
     private List<GameObject> spawnedFires = new List<GameObject>(); // Track instances
@@ -14,11 +15,13 @@ public class FireShower : MonoBehaviour
     public int movemementX;
     public int movemementZ;
     private GameObject cloud;
+    private GameObject warning;
     float time;
 
     void Start()
     {
         cloud = Instantiate(cloudPrefab, GenerateSpawnPosition(), cloudPrefab.transform.rotation);
+        warning = Instantiate(warningPrefab, transform.position, warningPrefab.transform.rotation);
         movemementX = Random.Range(-1, 1);
         movemementZ = Random.Range(-1, 1);
     }
@@ -59,6 +62,7 @@ public class FireShower : MonoBehaviour
         else
         {
             fire = true;
+            Destroy(warning);
         }
     }
 
