@@ -32,7 +32,7 @@ public class FireShower : MonoBehaviour
         if(fire)
         {
             transform.position = new Vector3(transform.position.x + movemementX * time, transform.position.y, transform.position.z + movemementZ * time);
-                cloud.transform.position  = new Vector3(cloud.transform.position.x + movemementX * time, cloud.transform.position.y, cloud.transform.position.z  + movemementZ * time);
+            cloud.transform.position  = new Vector3(cloud.transform.position.x + movemementX * time, cloud.transform.position.y, cloud.transform.position.z  + movemementZ * time);
             if (timer >= 0.10f)
             {
                 timer = 0f;
