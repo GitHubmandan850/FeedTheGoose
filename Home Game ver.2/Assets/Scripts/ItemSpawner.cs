@@ -49,9 +49,8 @@ public class ItemSpawner : MonoBehaviour
     private Vector3 generateSpawnPosition()
     {
         float x = Random.Range(transform.position.x - sizeX, transform.position.x + sizeX);
-        float y = Random.Range(transform.position.y - sizeY, transform.position.y + sizeY);
         float z = Random.Range(transform.position.z - sizeZ, transform.position.z + sizeZ);
-        return new Vector3(x, y, z);
+        return new Vector3(x, transform.position.y + 1, z);
     }
 
 
