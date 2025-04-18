@@ -11,7 +11,7 @@ public class IceTsunami : MonoBehaviour
 	    public Temperature temperature;
 		public GameObject warningPrefab;
 	
-    	private float delay;
+		private float timeNow;
     	private Vector3 direction;
     	private GameObject ice;
     	private Vector3 currentPos;
@@ -33,17 +33,16 @@ public class IceTsunami : MonoBehaviour
 
 			warning = Instantiate(warningPrefab, goal.position, warningPrefab.transform.rotation);
 
-        	delay = Time.time;
     	}
 
     	void Update()
     	{
-        	float timeNow = Time.time;
-        	float delta = timeNow - delay;
-
+			float delta = Time.deltaTime;
+        	timeNow += delta;
+        
         	if (timeNow <= 5f)
         	{
-            		timeNow = Time.time;
+            		timeNow = timeNow;
         	}
         	else 
             {
@@ -54,7 +53,7 @@ public class IceTsunami : MonoBehaviour
             		
 
             		Vector3 scale = ice.transform.localScale;
-            		scale += Vector3.one * scaleSpeed * delta;
+            		scale += new Vector3(scaleSpeed * 0.5f, scaleSpeed * 2f, scaleSpeed * 0.5f) * delta;
             		ice.transform.localScale = scale;
                 }
                 else if (timeNow >= 15)
@@ -77,6 +76,5 @@ public class IceTsunami : MonoBehaviour
             {
                 temperature.Heat(-1);
             }
-        	delay = timeNow;
     	}
 }

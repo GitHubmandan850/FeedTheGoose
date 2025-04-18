@@ -12,6 +12,7 @@ public class FrostStorm : MonoBehaviour
 
     private List<GameObject> spawnedClouds = new List<GameObject>(); // Track instances
     private GameObject warning;
+    private bool spawn = false;
 
     void Start()
     {
@@ -19,13 +20,18 @@ public class FrostStorm : MonoBehaviour
         GameObject controller = GameObject.FindWithTag("Manager");
         temperature = controller.GetComponent<Temperature>();
         warning = Instantiate(warningPrefab, transform.position, warningPrefab.transform.rotation);
-        SpawnClouds(125);
     }
     void Update()
     {
         timer += Time.deltaTime;
-        if(Time.time >= 5)
+        if(timer >= 5)
         {
+            if(!spawn)
+            {
+                SpawnClouds(125);
+                spawn = true;
+            }
+            Destroy(warning);
             for (int i = spawnedClouds.Count - 1; i >= 0; i--) 
             {
                 if (player.GetComponent<Collider>().bounds.Intersects(spawnedClouds[i].GetComponent<Collider>().bounds))
@@ -36,7 +42,7 @@ public class FrostStorm : MonoBehaviour
                 }
             }
         }
-        if(Time.time >= 20)
+        if(timer >= 20)
         {
             for (int i = spawnedClouds.Count - 1; i >= 0; i--) 
             {

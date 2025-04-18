@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf03ce1ed33e75f4794b2a9191eeb595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icePrefab: {fileID: 8018755842079399507, guid: 524c937bcc517a543a32ac514352a4c8, type: 3}
+  icePrefab: {fileID: 4851845883747681397, guid: 53e30ac3acd644843b2f39f8ac615e35, type: 3}
   player: {fileID: 0}
   goal: {fileID: 0}
   riseSpeed: 1
