@@ -57,7 +57,7 @@ public class WeatherManager : MonoBehaviour
         //spawns a degrandew storm
         if(num == 6699 || num == 9966)
         {
-            GameObject newFrostStorm = Instantiate(frostStorm, GenerateSpawnPosition(1), frostStorm.transform.rotation);
+            GameObject newFrostStorm = Instantiate(frostStorm, GenerateSpawnPosition(0, 0, 0, 1), frostStorm.transform.rotation);
             newFrostStorm.GetComponent<FrostStorm>().player = player;
             newFrostStorm.GetComponent<FrostStorm>().temperature = temperature;
         }
@@ -65,9 +65,9 @@ public class WeatherManager : MonoBehaviour
 
 
     //this generates a spawn position between -20 and 20 multiplied by the mult
-    private Vector3 GenerateSpawnPosition(int mult)
+    private Vector3 GenerateSpawnPosition(int x, int y, int z, int mult)
     {
-        Vector3 objectPosition = new Vector3(0, 0, 0);
+        Vector3 objectPosition = new Vector3(x, y, z);
         Vector3 minBounds = new Vector3(objectPosition.x - 20 * mult, objectPosition.y, objectPosition.z - 20 * mult);
         Vector3 maxBounds = new Vector3(objectPosition.x + 21 * mult, objectPosition.y, objectPosition.z + 21 * mult);
 
