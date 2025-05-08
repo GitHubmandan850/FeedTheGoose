@@ -33,6 +33,10 @@ public class DegrandewShower : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         GameObject controller = GameObject.FindWithTag("Manager");
         temperature = controller.GetComponent<Temperature>();
+        degran1 = GameObject.Find("Degran1").GetComponent<Image>();
+        degran2 = GameObject.Find("Degran2").GetComponent<Image>();
+        degran3 = GameObject.Find("Degran3").GetComponent<Image>();
+        degran4 = GameObject.Find("Degran4").GetComponent<Image>();
 
         //Makes the cloud that follows the storm
         for (int i = 0; i < 30; i++)
@@ -75,7 +79,7 @@ public class DegrandewShower : MonoBehaviour
         timer += time;
 
         color = degran.color;
-        color.a = Mathf.Max(0f, color.a - 0.05f);
+        color.a = Mathf.Max(0f, color.a - 0.075f);
         degran.color = color;
 
         //After the 5 second warning is up
@@ -85,7 +89,10 @@ public class DegrandewShower : MonoBehaviour
             transform.position = new Vector3(transform.position.x + movemementX * time, transform.position.y, transform.position.z + movemementZ * time);
             for (int i = clouds.Count - 1; i >= 0; i--)
             {
-                clouds[i].transform.position = new Vector3(clouds[i].transform.position.x + movemementX * time, clouds[i].transform.position.y, clouds[i].transform.position.z + movemementZ * time);
+                if(clouds[i] != null)
+                {
+                    clouds[i].transform.position = new Vector3(clouds[i].transform.position.x + movemementX * time, clouds[i].transform.position.y, clouds[i].transform.position.z + movemementZ * time);
+                }
             }
 
             //Spawns 50 degrandew per second
@@ -95,7 +102,7 @@ public class DegrandewShower : MonoBehaviour
                 SpawnDegrandew(5);
                 count += 1;
 
-                //The storm dies after spawning 500 degrandews
+                //The storm dies after spawning 100 degrandews
                 if(count >= 100)
                 {
                     //Destroy the clouds
@@ -108,11 +115,12 @@ public class DegrandewShower : MonoBehaviour
                     {
                         Destroy(spawnedDegrandews[i]);
                     }
-                    color = degran.color;
-                    color.a = Mathf.Max(0f, 0f);
-                    degran.color = color;
-                    //Destroy the storm
-                    Destroy(gameObject);
+
+                    if(count >= 150)
+                    {
+                        //Destroy the storm
+                        Destroy(gameObject);
+                    }
                 }
             }
 
@@ -120,14 +128,14 @@ public class DegrandewShower : MonoBehaviour
             for (int i = spawnedDegrandews.Count - 1; i >= 0; i--) 
             {
                 //If it is under the map it gets destroyed
-                if (spawnedDegrandews[i].transform.position.y < 1)
+                if (spawnedDegrandews[i] != null && spawnedDegrandews[i].transform.position.y < 1 )
                 {
                     Destroy(spawnedDegrandews[i]);
                     spawnedDegrandews.RemoveAt(i);
                 }
 
                 //If it hits the player it gets destroyed and the player is heated up by 3
-                else if (player.GetComponent<Collider>().bounds.Intersects(spawnedDegrandews[i].GetComponent<Collider>().bounds))
+                else if (spawnedDegrandews[i] != null && player.GetComponent<Collider>().bounds.Intersects(spawnedDegrandews[i].GetComponent<Collider>().bounds))
                 {
                     Destroy(spawnedDegrandews[i]);
                     spawnedDegrandews.RemoveAt(i);

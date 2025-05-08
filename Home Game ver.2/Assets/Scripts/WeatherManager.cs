@@ -20,10 +20,10 @@ public class WeatherManager : MonoBehaviour
     void Update()
     {
         //gets the random number
-        num = Random.Range(0, 7000);
+        num = Random.Range(0, 10000);
 
         //spawns a fire storm
-        if(num == 420)
+        if(num == 420 || num == 24)
         {
             GameObject newFireStorm = Instantiate(fireStorm, GenerateSpawnPosition(1), fireStorm.transform.rotation);
             newFireStorm.GetComponent<FireShower>().player = player;
@@ -31,7 +31,7 @@ public class WeatherManager : MonoBehaviour
         }
 
         //spawns an ice tsunami
-        if(num == 6969)
+        if(num == 6969 || num == 9696)
         {
             GameObject newIceTsunami = Instantiate(iceTsunami, GenerateSpawnPosition(4), frostStorm.transform.rotation);
             newIceTsunami.GetComponent<IceTsunami>().player = player;
@@ -39,7 +39,23 @@ public class WeatherManager : MonoBehaviour
         }
 
         //spawns an frost cloud
-        if(num == 69)
+        if(num == 69 || num == 96)
+        {
+            GameObject newFrostStorm = Instantiate(frostStorm, GenerateSpawnPosition(1), frostStorm.transform.rotation);
+            newFrostStorm.GetComponent<FrostStorm>().player = player;
+            newFrostStorm.GetComponent<FrostStorm>().temperature = temperature;
+        }
+
+        //spawns a firenado
+        if(num == 4242 || num == 2424)
+        {
+            GameObject newFrostStorm = Instantiate(frostStorm, GenerateSpawnPosition(1), frostStorm.transform.rotation);
+            newFrostStorm.GetComponent<FrostStorm>().player = player;
+            newFrostStorm.GetComponent<FrostStorm>().temperature = temperature;
+        }
+
+        //spawns a degrandew storm
+        if(num == 6699 || num == 9966)
         {
             GameObject newFrostStorm = Instantiate(frostStorm, GenerateSpawnPosition(1), frostStorm.transform.rotation);
             newFrostStorm.GetComponent<FrostStorm>().player = player;

@@ -40,11 +40,7 @@ public class IceTsunami : MonoBehaviour
 			float delta = Time.deltaTime;
         	timeNow += delta;
         
-        	if (timeNow <= 5f)
-        	{
-            		timeNow = timeNow;
-        	}
-        	else 
+        	if (timeNow > 5f)
             {
 				Destroy(warning);
                 if (timeNow <= 8f)
